@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StatsPlus — Bug Reports</title>
+  <link rel="stylesheet" href="./assets/css/bugreport.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo">SP</div>
+        <div>
+          <h1>StatsPlus</h1>
+          <p class="muted">Bug reports + lightweight admin tools (static GitHub Pages)</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="link" href="/">Home</a>
+        <a class="link active" href="./bugreport.html">Bug Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- BUG REPORT -->
+    <section class="card">
+      <div class="card-title">
+        <h2>Report a bug</h2>
+        <p class="muted">This will open a GitHub Issue draft (recommended for GitHub Pages sites).</p>
+      </div>
+
+      <form id="bugForm" class="form">
+        <div class="grid2">
+          <div>
+            <label for="title">Title</label>
+            <input id="title" name="title" placeholder="Short summary (ex: Leaderboard not loading)" required />
+          </div>
+
+          <div>
+            <label for="severity">Severity</label>
+            <select id="severity" name="severity">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="page">Page / URL</label>
+        <input id="page" name="page" placeholder="Where did it happen? (auto-filled if possible)" />
+
+        <label for="steps">Steps to reproduce</label>
+        <textarea id="steps" name="steps" placeholder="1) ...  2) ...  3) ..."></textarea>
+
+        <label for="expected">Expected behavior</label>
+        <textarea id="expected" name="expected" placeholder="What you thought would happen..."></textarea>
+
+        <label for="actual">Actual behavior</label>
+        <textarea id="actual" name="actual" placeholder="What actually happened..."></textarea>
+
+        <div class="grid2">
+          <div>
+            <label for="browser">Browser</label>
+            <input id="browser" name="browser" placeholder="Chrome / Safari / Firefox / etc" />
+          </div>
+          <div>
+            <label for="device">Device</label>
+            <input id="device" name="device" placeholder="Desktop / iPhone / Android / etc" />
+          </div>
+        </div>
+
+        <label for="extra">Extra info</label>
+        <textarea id="extra" name="extra" placeholder="Screenshots links, console errors, etc."></textarea>
+
+        <div class="actions">
+          <button type="submit" class="btn primary">Create GitHub Issue</button>
+          <button type="button" id="copyBtn" class="btn">Copy report text</button>
+        </div>
+
+        <p class="hint">
+          ⚙️ Setup required: edit <code>GITHUB_ISSUES_NEW_URL</code> in <code>assets/app.js</code> to your repo’s “new issue” link.
+        </p>
+      </form>
+    </section>
+
+    <!-- ADMIN PANEL (STATIC / LOCAL ONLY) -->
+    <section class="card">
+      <div class="card-title">
+        <h2>Admin: Manage plugins (local UI)</h2>
+        <p class="muted">
+          Works on GitHub Pages by saving changes to <code>localStorage</code> in your browser.
+          For real multi-admin management, you’ll need a backend.
+        </p>
+      </div>
+
+      <details class="details">
+        <summary>Open Admin Panel</summary>
+
+        <div class="admin">
+          <div class="grid2">
+            <div>
+              <label for="adminKey">Admin key</label>
+              <input id="adminKey" type="password" placeholder="Enter admin key to unlock" />
+              <p class="hint">This is only a client-side lock. Don’t use it for real security.</p>
+            </div>
+            <div>
+              <label>&nbsp;</label>
+              <button id="unlockBtn" class="btn primary" type="button">Unlock</button>
+              <button id="lockBtn" class="btn" type="button">Lock</button>
+            </div>
+          </div>
+
+          <div id="adminLockedNote" class="notice warn">
+            Admin panel is locked.
+          </div>
+
+          <div id="adminArea" class="admin-area hidden">
+            <div class="toolbar">
+              <button id="reloadPluginsBtn" class="btn" type="button">Reload plugins.json</button>
+              <button id="resetLocalBtn" class="btn danger" type="button">Reset local changes</button>
+            </div>
+
+            <ul id="pluginList" class="plugin-list"></ul>
+
+            <div class="notice">
+              Tip: edit <code>plugins.json</code> in your repo to change the default plugin list for everyone.
+            </div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <footer class="footer">
+      <span class="muted">statsplus.cc</span>
+    </footer>
+  </main>
+
+  <script src="./assets/app.js"></script>
+</body>
+</html>
